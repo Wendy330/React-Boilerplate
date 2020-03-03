@@ -13,8 +13,15 @@
     <div id="container"></div>
 
     <script type="text/babel">
+
+        var Bacon = React.createClass({
+            render: function () {
+                return (<h3>This is a simple component!</h3>);
+            }
+        });
+
         ReactDOM.render(
-            <h2>Welcome to React!</h2>,
+            <Bacon />,
             document.getElementById('container')
         );
     </script>
