@@ -13,12 +13,25 @@
     <div id="container"></div>
 
     <script type="text/babel">
-        var BuckysComponent = React.createClass({
-            render: function() {
-                return (<h2>This is a simple component</h2>);
+        var Movie = React.createClass({
+            render: function () {
+                return (
+                    <div>
+                        <h1>{this.props.title}</h1>
+                        <h2>{this.props.genre}</h2>
+                    </div>
+                );
             }
         });
-        ReactDOM.render(<BuckysComponent />, document.getElementById('container'));
+
+        ReactDOM.render(
+            <div>
+                <Movie title="Avatar" genre="action" />
+                <Movie title="The Notebook" genre="romance" />
+                <Movie title="Captain America" genre="action" />
+            </div>,
+            document.getElementById('container')
+        );
     </script>
 
 </body>
