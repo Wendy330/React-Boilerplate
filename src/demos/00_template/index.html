@@ -56,12 +56,32 @@
             }
         });
 
+        var Board = React.createClass({
+            getInitialState: function () {
+                return {
+                    comments: [
+                        'Hebe',
+                        'Day by Day',
+                        'Hebe Tien'
+                    ]
+                }
+            },
+
+            render: function () {
+                return (
+                    <div className="board">
+                        {
+                            this.state.comments.map(function (text, i) {
+                                return (<Comment key={i}>{text}</Comment>);
+                            })
+                        }
+                    </div>
+                );
+            }
+        });
+
         ReactDOM.render(
-            <div className="board">
-                <Comment>Hey my first comment</Comment>
-                <Comment>Second comment</Comment>
-                <Comment>Third comment</Comment>
-            </div>,
+            <Board />,
             document.getElementById('container')
         );
 
