@@ -24,10 +24,10 @@
             },
             remove: function() {
                 console.log('Removing comment');
+                this.props.deleteFromBoard(this.props.index)
             },
             save: function() {
-                var val = this.refs.newText.value;
-                console.log('New comment: ' + val);
+                this.props.updateCommentText(this.refs.newText.value, this.props.index);
                 this.setState({editing: false});
             },
             renderNormal: function() {
@@ -60,21 +60,39 @@
             getInitialState: function () {
                 return {
                     comments: [
-                        'Hebe',
-                        'Day by Day',
-                        'Hebe Tien'
+                        'This is my first comment',
+                        'Hey it is second',
+                        'Third comment here'
                     ]
                 }
+            },
+
+            removeComment: function (i) {
+                console.log('Removing comment: ' + i);
+                var arr = this.state.comments;
+                arr.splice(i, 1);
+                this.setState({comments: arr})
+            },
+
+            updateComment: function (newText, i) {
+                console.log('Updating comment');
+                var arr = this.state.comments;
+                arr[i] = newText;
+                this.setState({comments: arr})
+            },
+
+            eachComment: function (text, i) {
+                return (
+                    <Comment key={i} index={i} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
+                        {text}
+                    </Comment>
+                );
             },
 
             render: function () {
                 return (
                     <div className="board">
-                        {
-                            this.state.comments.map(function (text, i) {
-                                return (<Comment key={i}>{text}</Comment>);
-                            })
-                        }
+                        {this.state.comments.map(this.eachComment)}
                     </div>
                 );
             }
